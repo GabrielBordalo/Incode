@@ -1,12 +1,16 @@
 package POO;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import static java.lang.System.*;
 
-public class Teste {
+public class Ticket {
 
-   // public String operacao;
+    private static Map<Integer, Ticket> armazenamento = new HashMap<>();
+    private String caractere = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    private String ticket;
     private int numTicket = 0;
     private double preco = 8.00;
     private boolean pago;
@@ -26,8 +30,16 @@ public class Teste {
         Random gerar = new Random();
         int num = gerar.nextInt(100000);
         this.setNumTicket(getNumTicket() + num);
+
+        Random t = new Random();
+        int v = t.nextInt(getCaractere().length());
+        char numAleatorio = getCaractere().charAt(v);
+        this.setTicket(Character.toString(numAleatorio));
+
+        armazenamento.put(this.getNumTicket(),this);
+
         out.println("========================");
-        out.println("O ticket " + this.getNumTicket() + " no valor de " + preco + "R$ foi gerado.");
+        out.println(this.getTicket() + " ticket " + this.getNumTicket() + " no valor de " + preco + "R$ foi gerado.");
         out.println("========================");
     }
 
@@ -55,6 +67,19 @@ public class Teste {
             out.println("===== O Ticket foi pago =====");
         } else {
             out.println("===== O Ticket foi pago =====");
+        }
+    }
+
+    public void listaTickets() {
+        if (armazenamento.isEmpty()) {
+            out.println("Nenhum ticket foi gerado.");
+        } else {
+            out.println("==== Lista de Tickets ====");
+            int contador = 1;
+            for (Map.Entry<Integer, Ticket> entry : armazenamento.entrySet()) {
+                Ticket t = entry.getValue();
+                out.println("Ticket " + contador++ + ", Pago: " + t.isPago());
+            }
         }
     }
 
@@ -91,5 +116,28 @@ public class Teste {
         this.saldo = saldo;
     }
 
+    public String getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(String ticket) {
+        this.ticket = ticket;
+    }
+
+    public static Map<Integer, Ticket> getArmazenamento() {
+        return armazenamento;
+    }
+
+    public static void setArmazenamento(Map<Integer, Ticket> armazenamento) {
+        Ticket.armazenamento = armazenamento;
+    }
+
+    public String getCaractere() {
+        return caractere;
+    }
+
+    public void setCaractere(String caractere) {
+        this.caractere = caractere;
+    }
 }
 

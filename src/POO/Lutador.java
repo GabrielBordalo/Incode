@@ -35,7 +35,7 @@ public class Lutador {
     public void status() {
         System.out.println("--------STATUS--------");
         System.out.println("Lutador: " + getNome() + "\nCategoria: " + getCategoria() + "\nVitorias: "
-                + this.getVitoria() + "\nDerrotas: " + this.getDerrota() );
+                + this.getVitoria() + "\nDerrotas: " + this.getDerrota() + "\nEmpates: " + this.getEmpates() );
     }
 
     public void ganharLuta() {

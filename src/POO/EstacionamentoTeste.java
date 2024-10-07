@@ -2,48 +2,53 @@ package POO;
 
 import java.util.Scanner;
 
-public class Ticket {
+public class EstacionamentoTeste {
 
     public static void main(String[] args) {
 
         String operacao = "";
-        Teste t1 = new Teste();
+        Ticket ticket = new Ticket();
 
         Scanner entrada = new Scanner(System.in);
 
-        while (!operacao.equalsIgnoreCase("E")) {
+        while (!operacao.equalsIgnoreCase("F")) {
 
-            System.out.println("A - Gerar ticket.  B - Pagar ticket. \n C - Ver saldo.  D - Status. \n E - Sair.");
+            System.out.println("A - Gerar ticket.  B - Pagar ticket. \n C - Ver saldo.  D - Status. \n E - Lista de Tickets.  F - Sair.");
             System.out.println("Selecione uma operação: ");
             operacao = entrada.next();
 
 
-
-            if (operacao.equalsIgnoreCase("E")){
-
+            if (operacao.equalsIgnoreCase("F")){
+                System.out.println("Encerrando...");
                 break;
             }
 
             switch (operacao.toUpperCase()){
 
                 case "A":
-                    t1.gerarTicket();
-
+                    ticket.gerarTicket();
 
                     break;
 
                 case "B":
-                    t1.pagarTicket();
+                    ticket.pagarTicket();
 
                     break;
 
                 case "C":
-                    t1.verSaldo();
+                    ticket.verSaldo();
 
                     break;
 
                 case "D":
-                    t1.status();
+                    ticket.status();
+
+                    break;
+
+                case "E":
+                    ticket.listaTickets();
+
+                    break;
             }
         }
         entrada.close();
