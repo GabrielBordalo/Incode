@@ -1,6 +1,6 @@
-package Polimorfismo.Sobreposicao;
+package Polimorfismo.Sobrecarga;
 
-public abstract class Animal {
+public abstract class Animal2 {
     private double peso;
     private int idade;
     private int quantMembros;

@@ -1,6 +1,6 @@
-package Polimorfismo.Sobreposicao;
+package Polimorfismo.Sobrecarga;
 
-public class Mamifero extends Animal{
+public class Mamifero2 extends Animal2 {
 
     private String corPelo;
 

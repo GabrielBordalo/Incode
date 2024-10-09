@@ -8,8 +8,14 @@ public class Pessoa {
     private int idade;
     private String sexo;
 
-    public void fazerAniversario() {
+    public Pessoa(String nome, int idade, String sexo) {
+        setNome(nome);
+        setIdade(idade);
+        setSexo(sexo);
+    }
 
+    public void fazerAniversario() {
+        this.setIdade(this.getIdade() + 1);
     }
 
     public String getNome() {
@@ -36,18 +42,5 @@ public class Pessoa {
         this.sexo = sexo;
     }
 }
-
-
-
-
-
-//public void verSaldo(){
-    //if (this.isPago()) {
-        //this.setSaldo(this.getSaldo() + this.preco);
-        //out.println("===========================");
-        //out.println("O saldo é: " + this.getSaldo());
-        //out.println("===========================");
-    //}
-//}
 
 

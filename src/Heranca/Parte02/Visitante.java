@@ -1,4 +1,6 @@
-package Heranca;
+package Heranca.Parte02;
 
-public class Visitante extends Pessoa{
+import Heranca.Pessoa;
+
+public class Visitante extends Pessoa2 {
 }

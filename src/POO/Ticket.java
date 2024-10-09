@@ -1,14 +1,14 @@
 package POO;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import static java.lang.System.*;
 
 public class Ticket {
 
-    private static Map<Integer, Ticket> armazenamento = new HashMap<>();
+    private static List<Ticket> armazenamento = new ArrayList<>(); // Alterado para ArrayList
     private String caractere = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     private String ticket;
     private int numTicket = 0;
@@ -16,8 +16,7 @@ public class Ticket {
     private boolean pago;
     private double saldo;
 
-
-    public void verSaldo(){
+    public void verSaldo() {
         if (this.isPago()) {
             this.setSaldo(this.getSaldo() + this.preco);
             out.println("===========================");
@@ -36,7 +35,9 @@ public class Ticket {
         char numAleatorio = getCaractere().charAt(v);
         this.setTicket(Character.toString(numAleatorio));
 
-        armazenamento.put(this.getNumTicket(),this);
+        Ticket ticket = new Ticket();
+
+        armazenamento.add(this); // Adiciona o ticket ao ArrayList
 
         out.println("========================");
         out.println(this.getTicket() + " ticket " + this.getNumTicket() + " no valor de " + preco + "R$ foi gerado.");
@@ -44,7 +45,7 @@ public class Ticket {
     }
 
     public void status() {
-        if (this.isPago()){
+        if (this.isPago()) {
             out.println("=============================");
             out.println("O ticket " + this.getNumTicket() + " já foi pago.");
             out.println("=============================");
@@ -52,7 +53,6 @@ public class Ticket {
             out.println("==============================");
             out.println("Nenhum ticket foi gerado.");
             out.println("==============================");
-
         } else {
             out.println("=============================");
             out.println("O ticket " + this.getNumTicket() + " não foi pago.");
@@ -61,12 +61,11 @@ public class Ticket {
     }
 
     public void pagarTicket() {
-        double preco;
-        if (!this.isPago()){
+        if (!this.isPago()) {
             this.setPago(true);
             out.println("===== O Ticket foi pago =====");
         } else {
-            out.println("===== O Ticket foi pago =====");
+            out.println("===== O Ticket já foi pago =====");
         }
     }
 
@@ -76,8 +75,7 @@ public class Ticket {
         } else {
             out.println("==== Lista de Tickets ====");
             int contador = 1;
-            for (Map.Entry<Integer, Ticket> entry : armazenamento.entrySet()) {
-                Ticket t = entry.getValue();
+            for (Ticket t : armazenamento) {
                 out.println("Ticket " + contador++ + ", Pago: " + t.isPago());
             }
         }
@@ -98,7 +96,6 @@ public class Ticket {
     public void setPago(boolean pago) {
         this.pago = pago;
     }
-
 
     public int getNumTicket() {
         return numTicket;
@@ -124,11 +121,11 @@ public class Ticket {
         this.ticket = ticket;
     }
 
-    public static Map<Integer, Ticket> getArmazenamento() {
+    public static List<Ticket> getArmazenamento() {
         return armazenamento;
     }
 
-    public static void setArmazenamento(Map<Integer, Ticket> armazenamento) {
+    public static void setArmazenamento(List<Ticket> armazenamento) {
         Ticket.armazenamento = armazenamento;
     }
 
@@ -140,4 +137,3 @@ public class Ticket {
         this.caractere = caractere;
     }
 }
-
