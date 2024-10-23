@@ -1,6 +1,7 @@
 package POO;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -8,8 +9,8 @@ import static java.lang.System.*;
 
 public class Ticket {
 
-    private static List<Ticket> armazenamento = new ArrayList<>(); // Alterado para ArrayList
-    private String caractere = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    private  List<Ticket> armazenamento = new ArrayList<>(); // Alterado para ArrayList
+
     private String ticket;
     private int numTicket = 0;
     private double preco = 8.00;
@@ -25,27 +26,31 @@ public class Ticket {
         }
     }
 
-    public void gerarTicket() {
-        Random gerar = new Random();
-        int num = gerar.nextInt(100000);
-        this.setNumTicket(getNumTicket() + num);
-
-        Random t = new Random();
-        int v = t.nextInt(getCaractere().length());
-        char numAleatorio = getCaractere().charAt(v);
-        this.setTicket(Character.toString(numAleatorio));
-
+    public void gerarTicket(int num) {
         Ticket ticket = new Ticket();
+        out.println(num);
+        this.setNumTicket(num);
 
-        armazenamento.add(this); // Adiciona o ticket ao ArrayList
+        armazenamento.add(ticket); // Adiciona o ticket ao ArrayList
 
         out.println("========================");
         out.println(this.getTicket() + " ticket " + this.getNumTicket() + " no valor de " + preco + "R$ foi gerado.");
         out.println("========================");
+
+        for (Ticket t : armazenamento) {
+            out.println(t);
+        }
+
+
+
     }
 
+
+
+
+
     public void status() {
-        if (this.isPago()) {
+        if (!this.isPago()) {
             out.println("=============================");
             out.println("O ticket " + this.getNumTicket() + " já foi pago.");
             out.println("=============================");
@@ -61,7 +66,8 @@ public class Ticket {
     }
 
     public void pagarTicket() {
-        if (!this.isPago()) {
+
+        if (this.isPago()) {
             this.setPago(true);
             out.println("===== O Ticket foi pago =====");
         } else {
@@ -69,6 +75,8 @@ public class Ticket {
         }
     }
 
+
+    
     public void listaTickets() {
         if (armazenamento.isEmpty()) {
             out.println("Nenhum ticket foi gerado.");
@@ -76,7 +84,7 @@ public class Ticket {
             out.println("==== Lista de Tickets ====");
             int contador = 1;
             for (Ticket t : armazenamento) {
-                out.println("Ticket " + contador++ + ", Pago: " + t.isPago());
+                out.println("Ticket "+ getNumTicket() + ", Pago: " + t.isPago());
             }
         }
     }
@@ -121,19 +129,20 @@ public class Ticket {
         this.ticket = ticket;
     }
 
-    public static List<Ticket> getArmazenamento() {
+    public  List<Ticket> getArmazenamento() {
         return armazenamento;
     }
 
-    public static void setArmazenamento(List<Ticket> armazenamento) {
-        Ticket.armazenamento = armazenamento;
-    }
 
-    public String getCaractere() {
-        return caractere;
-    }
 
-    public void setCaractere(String caractere) {
-        this.caractere = caractere;
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "numTicket=" + numTicket +
+                ", ticket='" + ticket + '\'' +
+                ", preco=" + preco +
+                ", pago=" + pago +
+                ", saldo=" + saldo +
+                '}';
     }
 }

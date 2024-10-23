@@ -1,6 +1,5 @@
 package Arrays;
 
-import java.io.FilterOutputStream;
 import java.util.Arrays;
 
 public class Exercicios {

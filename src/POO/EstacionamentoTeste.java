@@ -1,5 +1,6 @@
 package POO;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class EstacionamentoTeste {
@@ -26,7 +27,9 @@ public class EstacionamentoTeste {
             switch (operacao.toUpperCase()){
 
                 case "A":
-                    ticket.gerarTicket();
+                    Random gerar = new Random();
+                    int num = gerar.nextInt(100000);
+                    ticket.gerarTicket(num);
 
                     break;
 
@@ -46,7 +49,7 @@ public class EstacionamentoTeste {
                     break;
 
                 case "E":
-                    ticket.listaTickets();
+                    //ticket.list();
 
                     break;
             }
